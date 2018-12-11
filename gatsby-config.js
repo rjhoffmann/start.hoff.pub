@@ -18,7 +18,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-unsplash_color`,
+      resolve: `gatsby-source-unsplash-color`,
       options: {
         accessKey: process.env.UNSPLASH_ACCESS,
         collectionId: process.env.UNSPLASH_COLLECTION,
