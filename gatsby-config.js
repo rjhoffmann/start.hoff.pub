@@ -17,12 +17,5 @@ module.exports = {
         pathToConfigModule: `src/utils/typography.js`,
       },
     },
-    {
-      resolve: `gatsby-source-unsplash-color`,
-      options: {
-        accessKey: process.env.UNSPLASH_ACCESS,
-        collectionId: process.env.UNSPLASH_COLLECTION,
-      },
-    },
   ],
 };

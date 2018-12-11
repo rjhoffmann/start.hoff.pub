@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "description": "Gatsby hello world starter",
+  "name": "hoff-startpage",
+  "description": "Startpage for me @ start.hoff.pub",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
@@ -9,13 +9,14 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.9.3",
     "dotenv": "^6.2.0",
     "gatsby": "^2.0.64",
     "gatsby-plugin-react-helmet": "^3.0.4",
     "gatsby-plugin-styled-components": "^3.0.4",
     "gatsby-plugin-typography": "^2.2.2",
-    "gatsby-source-unsplash-color": "file:plugins/gatsby-source-unsplash-color",
+    "lodash": "^4.17.11",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
