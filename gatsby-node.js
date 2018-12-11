@@ -1,5 +1,9 @@
+const fs = require('fs');
+const download = require('download');
 const axios = require('axios');
-const _ = require('lodash');
+const _foreach = require('lodash/forEach');
+const _assign = require('lodash/assign');
+const _map = require('lodash/map');
 
 exports.onPreInit = () => {
   if (process.env.NODE_ENV === 'development') {
@@ -20,8 +24,20 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest}) => {
 
   return (
     instance.get(`collections/${collectionId}/photos`).then(res => {
-      _.forEach(res.data, photo => {
-        actions.createNode(_.assign({}, photo, {
+      // TODO: Download photo to static, utilize gatsby photo engine to
+      // ensure faster image loads or something like that.
+
+      // for (const photo of res.data) {
+      //   // Triggering a download on Unsplash for tracking purposes.
+      //   instance.get(photo.download_location);
+
+      //   download(photo.urls.raw).then(rawPhoto => {
+      //     fs.writeFileSync(`static/${photo.id}.jpg`)
+      //   })
+      // }
+      
+      _foreach(res.data, photo => {
+        actions.createNode(_assign({}, photo, {
           id: createNodeId(`unsplash-photo-${photo.id}`),
           parent: null,
           children: [],

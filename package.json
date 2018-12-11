@@ -12,6 +12,7 @@
     "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.9.3",
     "dotenv": "^6.2.0",
+    "download": "^7.1.0",
     "gatsby": "^2.0.64",
     "gatsby-plugin-react-helmet": "^3.0.4",
     "gatsby-plugin-styled-components": "^3.0.4",
