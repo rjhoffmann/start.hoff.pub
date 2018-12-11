@@ -1,7 +1,17 @@
 import React from "react"
 
-export default () => (
-  <div>
-    <span>Hello world!</span>
-  </div>
-)
+import Page from '../components/page';
+
+class Index extends React.Component {
+  render() {
+    return (
+      <Page>
+        <div>
+          <span>Hello world!</span>
+        </div>
+      </Page>
+    );
+  }
+};
+
+export default Index;
