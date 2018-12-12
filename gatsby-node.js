@@ -10,16 +10,14 @@ exports.onPreInit = () => {
 };
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest}) => {
-  const accessKey = process.env.UNSPLASH_ACCESS;
-  const collectionUri = `collections/${process.env.UNSPLASH_COLLECTION}/photos`;
   const instance = axios.create({
     baseURL: `https://api.unsplash.com/`,
     headers: {
-      'Authorization': `Client-ID ${accessKey}`,
+      'Authorization': `Client-ID ${process.env.UNSPLASH_ACCESS}`,
     },
   });
 
-  return instance.get(collectionUri)
+  return instance.get(`collections/${process.env.UNSPLASH_COLLECTION}/photos`)
     .then(res => res.data.map(photo => {
       actions.createNode(_assign({}, photo, {
         id: createNodeId(`unsplash-photo-${photo.id}`),
@@ -34,13 +32,11 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest}) => {
 };
 
 exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions;
-
   // Get the thumbnail image for the node (photo) and
   // create a field width the base64 encoding of that image.
   if (node.internal.type === NODE_TYPENAME) {
     return axios.get(node.urls.thumb, { responseType: 'arraybuffer' })
-      .then(res => createNodeField({
+      .then(res => actions.createNodeField({
         node,
         name: `encodedPhotoThumb`,
         value: Buffer.from(res.data, 'binary').toString('base64'),
