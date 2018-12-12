@@ -1,6 +1,5 @@
 const axios = require('axios');
 const _assign = require('lodash/assign');
-const image2base64 = require('image-to-base64');
 
 const NODE_TYPENAME = `UnsplashPhoto`;
 
@@ -46,11 +45,5 @@ exports.onCreateNode = ({ node, actions }) => {
         name: `encodedPhotoThumb`,
         value: Buffer.from(res.data, 'binary').toString('base64'),
       }));
-    // return image2base64(node.urls.thumb)
-    //   .then(res => createNodeField({
-    //     node,
-    //     name: `encodedPhotoThumb`,
-    //     value: res,
-    //   }));
   }
 };
