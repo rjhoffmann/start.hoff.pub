@@ -24,8 +24,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest}) => {
 
   return (
     instance.get(`collections/${collectionId}/photos`).then(res => {
-      // TODO: Download photo to static, utilize gatsby photo engine to
-      // ensure faster image loads or something like that.
+      // TODO: Download photo to static, utilize gatsby photo plugins or whatever
 
       // for (const photo of res.data) {
       //   // Triggering a download on Unsplash for tracking purposes.
