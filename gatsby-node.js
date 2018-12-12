@@ -9,7 +9,7 @@ exports.onPreInit = () => {
   }
 };
 
-exports.sourceNodes = ({ actions, createNodeId, createContentDigest}) => {
+exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   const instance = axios.create({
     baseURL: `https://api.unsplash.com/`,
     headers: {
