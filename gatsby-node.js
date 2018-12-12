@@ -40,11 +40,17 @@ exports.onCreateNode = ({ node, actions }) => {
   // Get the thumbnail image for the node (photo) and
   // create a field width the base64 encoding of that image.
   if (node.internal.type === NODE_TYPENAME) {
-    return image2base64(node.urls.thumb)
+    return axios.get(node.urls.thumb, { responseType: 'arraybuffer' })
       .then(res => createNodeField({
         node,
         name: `encodedPhotoThumb`,
-        value: res,
+        value: Buffer.from(res.data, 'binary').toString('base64'),
       }));
+    // return image2base64(node.urls.thumb)
+    //   .then(res => createNodeField({
+    //     node,
+    //     name: `encodedPhotoThumb`,
+    //     value: res,
+    //   }));
   }
 };

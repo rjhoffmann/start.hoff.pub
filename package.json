@@ -11,14 +11,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.9.3",
-    "bluebird": "^3.5.3",
     "dotenv": "^6.2.0",
-    "download": "^7.1.0",
     "gatsby": "^2.0.64",
     "gatsby-plugin-react-helmet": "^3.0.4",
     "gatsby-plugin-styled-components": "^3.0.4",
     "gatsby-plugin-typography": "^2.2.2",
-    "image-to-base64": "^2.0.1",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -26,7 +23,6 @@
     "react-typography": "^0.16.18",
     "styled-components": "^4.1.2",
     "typography": "^0.16.18",
-    "typography-theme-st-annes": "^0.16.18",
-    "unsplash-js": "^4.8.0"
+    "typography-theme-st-annes": "^0.16.18"
   }
 }
