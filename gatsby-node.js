@@ -38,7 +38,7 @@ exports.onCreateNode = ({ node, actions }) => {
     return axios.get(node.urls.thumb, { responseType: 'arraybuffer' })
       .then(res => actions.createNodeField({
         node,
-        name: `encodedPhotoThumb`,
+        name: `encoded`,
         value: Buffer.from(res.data, 'binary').toString('base64'),
       }));
   }

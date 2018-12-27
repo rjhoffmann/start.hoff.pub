@@ -4,54 +4,42 @@ import { graphql } from 'gatsby';
 
 import Page from '../components/page';
 
-// class StartPage extends React.Component {
-//   render() {
-//     const { edges: photos } = this.props.data.allUnsplashPhoto;
-//     const { node: photo } = _sample(photos);
+class StartPage extends React.Component {
+  render() {
+    if (this.props.data) {
+      const { photo } = _sample(this.props.data.allUnsplashPhoto.photos);
 
-//     return (
-//       <Page photo={photo}>
-//         <div>
-//           <span>Hello World!</span>
-//         </div>
-//       </Page>
-//     )
-//   }
-// }
+      return (
+        <Page photo={photo}>
+          <span>Hello World.</span>
+        </Page>
+      )
+    }
 
-export default ({ data: { allUnsplashPhoto: { edges: photos } } }) => {
-  const { node: photo } = _sample(photos);
-  
-  return (
-    <Page photo={photo}>
-      <div>
-        <span>Hello World!</span>
-      </div>
-    </Page>
-  )
-};
+    return <div>loading</div>;
+  }
+}
 
 export const query = graphql`
   query {
     allUnsplashPhoto {
-      edges {
-        node {
+      photos: edges {
+        photo: node {
           id
-          user {
-            name
-            portfolio_url
-            username
-          }
+          height
+          width
           color
-          links {
-            download_location
-          }
           urls {
             full
             thumb
+          }
+          fields {
+            encoded
           }
         }
       }
     }
   }
 `;
+
+export default StartPage;
