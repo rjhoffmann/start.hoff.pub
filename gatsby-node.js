@@ -25,6 +25,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
         children: [],
         internal: {
           type: NODE_TYPENAME,
+          content: JSON.stringify(photo),
           contentDigest: createContentDigest(photo),
         },
       }))
