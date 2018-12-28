@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
+import { ImageHelper } from 'react-preload';
 
 const StyledContainer = styled.div`
   position: relative;
@@ -28,7 +29,7 @@ const StyledThumbnail = styled.div`
   top: 0; right: 0; bottom: 0; left: 0;
   height: 100vh; width: 100vw;
   opacity: ${props => props.loaded ? 0 : 1};
-  transition: opacity .4s .6s;
+  transition: opacity 1s .4s;
 
   background-size: cover;
   background-position: center;
@@ -38,20 +39,39 @@ const StyledThumbnail = styled.div`
 
 const StyledContent = styled.div`
   position: relative;
+  display: grid;
+  grid-template-rows: 30px 1fr 30px;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: 
+    "header header header"
+    ". main ."
+    "footer footer footer";
   z-index: 30;
-  padding: 100px 20px;
+  padding: 20px;
+  width: 100%; height: 100%;
+`;
+
+export const StyledHeader = styled.div`
+  grid-area: header;
+`;
+
+export const StyledMain = styled.div`
+  grid-area: main;
+`;
+
+export const StyledFooter = styled.div`
+  grid-area: footer;
 `;
 
 class PageComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isFullImageLoaded: false };
+    this.state = { ready: false };
   }
 
   componentDidMount() {
-    const image = new Image();
-    image.src = this.props.photo.urls.full;
-    image.onload = () => this.setState({ isFullImageLoaded: true });
+    ImageHelper.loadImage(this.props.photo.urls.full)
+      .then(() => this.setState({ ready: true }));
   }
 
   render() {
@@ -93,7 +113,7 @@ class PageComponent extends React.Component {
         <StyledContainer image={`url('${photo.urls.full}')`}>
           <StyledThumbnail
             thumbnail={`url("data:image/svg+xml,${svgString}")`}
-            loaded={this.state.isFullImageLoaded} />
+            loaded={this.state.ready} />
           <StyledContent>
             {children}
           </StyledContent>
@@ -113,4 +133,4 @@ PageComponent.propTypes = {
   }),
 };
 
-export default  PageComponent;
+export default PageComponent;

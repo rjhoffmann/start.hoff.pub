@@ -2,7 +2,7 @@ import React from 'react'
 import _sample from 'lodash/sample';
 import { graphql } from 'gatsby';
 
-import Page from '../components/page';
+import Page, { StyledHeader as Header, StyledMain as Main, StyledFooter as Footer } from '../components/page';
 
 class StartPage extends React.Component {
   render() {
@@ -11,7 +11,15 @@ class StartPage extends React.Component {
 
       return (
         <Page photo={photo}>
-          <span>Hello World.</span>
+          <Header>
+            Header
+          </Header>
+          <Main>
+            Main - Hello World
+          </Main>
+          <Footer>
+            Footer
+          </Footer>
         </Page>
       )
     }
